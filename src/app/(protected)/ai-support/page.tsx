@@ -3,7 +3,6 @@
 export default function AiSupport() {
   return (
     <section className='animate-fadeIn'>
-      {/* Header */}
       <div className='bg-white/95 backdrop-blur-xl rounded-2xl p-6 mb-8 shadow-lg'>
         <h1 className='text-2xl font-bold text-slate-900 mb-2'>
           AI Mental Health Support
@@ -12,8 +11,6 @@ export default function AiSupport() {
           Chat with our AI counselor for immediate support and coping strategies
         </p>
       </div>
-
-      {/* Chat */}
       <div className='bg-white/95 backdrop-blur-xl rounded-2xl p-0 overflow-hidden mb-8 shadow-lg'>
         <div className='h-[500px] flex flex-col border border-slate-200 rounded-xl overflow-hidden'>
           <div className='bg-gradient-to-tr from-indigo-600 to-violet-600 text-white p-4 font-semibold'>
@@ -42,8 +39,6 @@ export default function AiSupport() {
           </div>
         </div>
       </div>
-
-      {/* Quick Support */}
       <div className='bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-lg'>
         <h3 className='text-indigo-600 font-bold text-lg mb-4'>
           Quick Support Options

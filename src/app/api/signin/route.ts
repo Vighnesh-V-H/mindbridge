@@ -29,7 +29,6 @@ export async function POST(request: NextRequest) {
 
     // Verify password
     const isValidPassword = await bcrypt.compare(password, user.password);
-
     if (!isValidPassword) {
       return NextResponse.json(
         { message: "Invalid email or password" },
@@ -37,7 +36,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate JWT token
+    // Sign JWT
     const token = jwt.sign(
       {
         userId: user.id,
@@ -49,10 +48,9 @@ export async function POST(request: NextRequest) {
       { expiresIn: "7d" }
     );
 
-    // Return success response with token
-    return NextResponse.json({
+    // Store JWT in HttpOnly cookie
+    const response = NextResponse.json({
       message: "Login successful",
-      token,
       user: {
         id: user.id,
         email: user.email,
@@ -60,6 +58,16 @@ export async function POST(request: NextRequest) {
         lastName: user.lastName,
       },
     });
+
+    response.cookies.set("auth_token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
+    return response;
   } catch (error) {
     console.error("Signin error:", error);
     return NextResponse.json(
