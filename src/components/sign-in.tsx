@@ -40,14 +40,16 @@ export default function SignInform() {
 
   return (
     <div className='max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md'>
-      <h2 className='text-2xl font-bold mb-6 text-center'>Login</h2>
+      <h2 className='text-2xl font-bold mb-6 text-center text-blue-500'>
+        Signin
+      </h2>
 
       <form onSubmit={handleSubmit} className='space-y-4'>
         <div>
           <label
             htmlFor='email'
-            className='block text-sm font-medium text-black mb-1'>
-            Email
+            className='block text-sm font-medium  text-black mb-1'>
+            Signin
           </label>
           <input
             type='email'
@@ -55,7 +57,7 @@ export default function SignInform() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+            className='w-full px-3 text-black py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
             placeholder='Enter your email'
           />
         </div>

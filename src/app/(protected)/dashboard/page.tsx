@@ -8,7 +8,7 @@ export default function Dashboard() {
         <h1 className='text-2xl font-bold text-slate-900 mb-2'>
           Welcome to MindBridge
         </h1>
-        <p className='text-slate-500'>
+        <p className='text-black'>
           Your comprehensive digital mental health support system
         </p>
       </div>
@@ -45,8 +45,8 @@ export default function Dashboard() {
             key={idx}
             className='bg-white p-6 rounded-xl text-center shadow-md cursor-pointer hover:-translate-y-1 hover:shadow-lg transition'>
             <div className='text-3xl text-indigo-600 mb-2'>{item.icon}</div>
-            <h3 className='font-semibold mb-1'>{item.title}</h3>
-            <p className='text-slate-500 text-sm'>{item.desc}</p>
+            <h3 className='font-semibold text-black mb-1'>{item.title}</h3>
+            <p className='text-black text-sm'>{item.desc}</p>
           </div>
         ))}
       </div>
