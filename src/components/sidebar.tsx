@@ -39,10 +39,11 @@ export default function Sidebar() {
             </Link>
           )
       )}
-
-      <button className='w-[90%] mx-auto block mt-8 bg-gradient-to-tr from-indigo-600 to-violet-600 text-white py-3 rounded-lg font-semibold hover:shadow-xl transition'>
-        Logout
-      </button>
+      <Link href={"/signin"}>
+        <button className='w-[90%] mx-auto block mt-8 bg-gradient-to-tr from-indigo-600 to-violet-600 text-white py-3 rounded-lg font-semibold hover:shadow-xl transition'>
+          Logout
+        </button>
+      </Link>
     </nav>
   );
 }
