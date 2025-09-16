@@ -49,14 +49,14 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    // Verify JWT
+
     const decoded = jwt.verify(
       token,
       process.env.JWT_SECRET || "your-secret-key"
     ) as any;
     const userId = decoded.userId;
 
-    // Fetch appointments for this user
+
     const appointments = await prisma.appointment.findMany({
       where: { userId },
       orderBy: { date: "asc" },
