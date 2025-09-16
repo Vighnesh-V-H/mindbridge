@@ -1,9 +1,44 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+import { jwtDecode } from "jwt-decode";
+import Admin from "@/components/admin";
+
 export default function Dashboard() {
+  const [role, setRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function getAuth() {
+      const cookies = document.cookie.split("; ").reduce((acc, current) => {
+        const [name, value] = current.split("=");
+        acc[name] = value;
+        return acc;
+      }, {} as Record<string, string>);
+
+      const authToken = cookies["auth_token"];
+      console.log(authToken);
+      if (authToken) {
+        try {
+          const decoded = jwtDecode(authToken);
+          // @ts-expect-error decoded has role
+          setRole(decoded.role || null);
+        } catch (err) {
+          console.error("Failed to decode auth_token:", err);
+        }
+      }
+    }
+
+    getAuth();
+  }, []);
+
+  if (role === "ADMIN") {
+    return <Admin />;
+  }
+
+  // Normal user dashboard
   return (
     <section className='animate-fadeIn'>
-      {/* Header */}
       <div className='bg-white/95 backdrop-blur-xl rounded-2xl p-6 mb-8 shadow-lg'>
         <h1 className='text-2xl font-bold text-slate-900 mb-2'>
           Welcome to MindBridge
@@ -13,7 +48,6 @@ export default function Dashboard() {
         </p>
       </div>
 
-      {/* Emergency Banner */}
       <div className='bg-gradient-to-tr from-red-500 to-red-700 text-white p-4 rounded-lg text-center mb-8'>
         <div className='font-semibold mb-1'>🚨 In case of emergency, call:</div>
         <div className='text-lg font-bold'>
@@ -21,7 +55,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Quick Actions */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8'>
         {[
           {
