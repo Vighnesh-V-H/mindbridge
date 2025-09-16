@@ -18,6 +18,7 @@ model User {
   updatedAt DateTime @updatedAt
 
     appointments Appointment[] 
+    assements AssessmentSubmission[]
 
   @@map("users")
 }
@@ -37,4 +38,18 @@ model Appointment {
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("appointments")
+}
+
+model AssessmentSubmission {
+  id            String    @id @default(cuid())
+  assessmentType String    
+  totalScore     Int
+  questionCount  Int
+  responses      Json      
+  submittedAt    DateTime  @default(now())
+
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("assessment_submissions")
 }
